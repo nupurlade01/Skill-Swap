@@ -15,6 +15,6 @@ The Code Board is an interactive space designed for real-time collaboration on c
 
 #Skill Swap Page:
 
-The Skill Swap page is the heart of the platform, where users can offer and request skills from one another. Key Features: Users can create profiles showcasing the skills they can offer. Users can search for others based on skills they need, offering an efficient way to swap skills. User Authentication is integrated using email and password. Collaboration features to post and respond to skill exchange requests. Team Members Anchal Chauhan: https://github.com/Anchalanshu Dhanush V: https://github.com/Dhanush10122003 A special thanks to Nyxiaz for providing guidance and contributing valuable feedback to improve this project. GitHub Profile.
+The Skill Swap page is the heart of the platform, where users can offer and request skills from one another. Key Features: Users can create profiles showcasing the skills they can offer. Users can search for others based on skills they need, offering an efficient way to swap skills. User Authentication is integrated using email and password. Collaboration features to post and respond to skill exchange requests. 
 
 Deployment Assistance I am currently seeking guidance and assistance with the deployment process, as I am facing difficulties uploading the project to the hosting platform. Any help in this regard would be highly appreciated.
