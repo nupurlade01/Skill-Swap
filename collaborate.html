@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Collaborate and Post Requests</title>
+    <link rel="stylesheet" href="../static/css/style.css"> 
+    <style>
+        .container { max-width: 900px; margin: 30px auto; padding: 20px; }
+        .post-form { background-color: #f0f8ff; padding: 25px; border-radius: 8px; margin-bottom: 40px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .post-form h2 { color: #008b8b; }
+        .post-form label, .post-form input, .post-form textarea { display: block; width: 100%; margin-bottom: 10px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .post-form button { background-color: #008b8b; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s; }
+        .post-form button:hover { background-color: #006969; }
+        
+        .requests-feed h2 { color: #333; border-bottom: 2px solid #008b8b; padding-bottom: 5px; margin-top: 30px; }
+        .request-card { border: 1px solid #ddd; padding: 15px; border-radius: 5px; margin-bottom: 15px; background-color: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .request-card h3 { color: #333; margin-top: 0; }
+        .request-card p { margin: 5px 0; }
+        .request-card strong { color: #008b8b; }
+        .request-card .meta { font-size: 0.9em; color: #777; margin-top: 10px; border-top: 1px dashed #eee; padding-top: 5px; }
+        .request-card .status-open { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤝 Collaboration Requests Board</h1>
+
+        <div class="post-form">
+            <h2>Post a New Collaboration Request</h2>
+            <form action="{{ url_for('post_request') }}" method="POST">
+                <label for="title">Title (e.g., Hackathon Project, Skill Swap):</label>
+                <input type="text" id="title" name="title" required>
+                
+                <label for="skill_needed">Skill Needed:</label>
+                <input type="text" id="skill_needed" name="skill_needed" placeholder="e.g., Python, UI/UX Design, SQL" required>
+                
+                <label for="description">Detailed Description of Task/Project:</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+                
+                <button type="submit">Post Request</button>
+            </form>
+        </div>
+
+        <div class="requests-feed">
+            <h2>Active Requests</h2>
+            
+            {% if requests %}
+                {% for req in requests %}
+                    <div class="request-card">
+                        <h3>{{ req[0] }}</h3> <p>{{ req[1] }}</p> <p><strong>Needs Skill:</strong> <span style="color: blue;">{{ req[2] }}</span></p> <div class="meta">
+                            Posted by: **{{ req[4] }}** | 
+                            Status: <span class="status-open">Open</span> | 
+                            Posted on: {{ req[3] }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center;">No collaboration requests have been posted yet. Be the first!</p>
+            {% endif %}
+        </div>
+        
+        <p style="margin-top: 30px;"><a href="{{ url_for('landing') }}">← Back to Home</a></p>
+    </div>
+</body>
+</html>

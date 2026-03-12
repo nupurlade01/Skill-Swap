@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>High Detail User Report</title>
+    <link rel="stylesheet" href="../static/css/style.css"> 
+    <style>
+        .container { max-width: 900px; margin: 50px auto; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); background-color: #fff; }
+        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+        th, td { border: 1px solid #ddd; padding: 15px; text-align: left; }
+        th { background-color: #f0f8ff; color: #008b8b; font-weight: 700; }
+        h1 { color: #008b8b; text-align: center; margin-bottom: 20px; }
+        p { text-align: center; color: #555; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⭐ High Detail User Report (Correlated Subquery)</h1>
+        
+        <p>This report identifies users whose "Skills" section length is greater than the average skill length for all users who registered on the *same day*.</p>
+
+        {% if detailed_users %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Skill Length (Characters)</th>
+                        <th>Registered On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in detailed_users %}
+                        <tr>
+                            <td>{{ user[0] }}</td>
+                            <td>{{ user[1] }}</td>
+                            <td>{{ user[2] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No users were found with above-average skill description detail that met the criteria.</p>
+        {% endif %}
+        
+        <p style="margin-top: 30px;"><a href="{{ url_for('landing') }}">← Back to Home</a></p>
+    </div>
+</body>
+</html>

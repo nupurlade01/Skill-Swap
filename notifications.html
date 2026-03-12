@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notification Feed</title>
+    <link rel="stylesheet" href="../static/css/style.css"> 
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .notification-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .notification-card:hover {
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .unread {
+            border-left: 5px solid #008b8b; /* Highlight for unread */
+            background-color: #f0f8ff;
+        }
+        .timestamp {
+            font-size: 0.8em;
+            color: #777;
+            display: block;
+            margin-top: 5px;
+        }
+        h1 {
+            color: #008b8b;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔔 Your Notifications</h1>
+
+        {% if notifications %}
+            {% for notification in notifications %}
+                <div class="notification-card {% if not notification[2] %}unread{% endif %}">
+                    <p>{{ notification[0] }}</p>
+                    <span class="timestamp">
+                        Received: {{ notification[1] }} 
+                        {% if not notification[2] %}(New){% endif %}
+                    </span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center; color: #555;">You have no notifications yet.</p>
+        {% endif %}
+        
+        <p style="text-align: center; margin-top: 30px;">
+            <a href="{{ url_for('landing') }}" style="color: #008b8b; text-decoration: none;">← Back to Home</a>
+        </p>
+    </div>
+</body>
+</html>
